@@ -16,6 +16,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.ContainerBlock;
 import org.bukkit.entity.Player;
 
+@SuppressWarnings("deprecation")
 public class StructureCC implements Serializable {
 
     /**
@@ -261,7 +262,7 @@ public class StructureCC implements Serializable {
         return materialForSecondPass;
     }
 
-    private void remove(ArrayList<BlockManager> blocs, World world) {
+	private void remove(ArrayList<BlockManager> blocs, World world) {
 
         ArrayList<Material> materials = StructureCC.getMaterialsForSecondPass();
 
@@ -321,7 +322,6 @@ public class StructureCC implements Serializable {
     }
 
     public void undoStart(World world) {
-        // TODO Auto-generated method stub
         this.print(blocsInitial, world);
 
     }
@@ -368,7 +368,6 @@ public class StructureCC implements Serializable {
     }
 
     public void addButton(MyLocation myLocation, boolean sens2) {
-        // TODO Auto-generated method stub
         
         ButtonCC b = new ButtonCC(myLocation.getWordLocation());
         b.setPositiv(sens2);
@@ -397,10 +396,13 @@ public class StructureCC implements Serializable {
                cal.add(Calendar.SECOND, (int) -this.timeForDateLimited);
                this.lastUsed = cal.getTime();
             }
-            long res = currentTime - this.lastUsed.getTime(); 
+            @SuppressWarnings("unused")
+			long res = currentTime - this.lastUsed.getTime(); 
             
-            long test = currentTime - this.lastUsed.getTime();
-            long borne = this.timeForDateLimited * 1000;
+            @SuppressWarnings("unused")
+			long test = currentTime - this.lastUsed.getTime();
+            @SuppressWarnings("unused")
+			long borne = this.timeForDateLimited * 1000;
             
             if(currentTime - this.lastUsed.getTime() <= this.timeForDateLimited * 1000)
             {

@@ -6,7 +6,6 @@ import onishinji.ClicClac;
 import onishinji.StructureCC;
 import onishinji.models.BlockManager;
 
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -136,7 +135,8 @@ public class InfoCCCommand implements CommandExecutor {
         }
         else
         {
-            int i=0;
+            @SuppressWarnings("unused")
+			int i=0;
             int nbTotal = 0;
             String msg = "";
             

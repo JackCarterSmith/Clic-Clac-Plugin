@@ -16,6 +16,7 @@ public class BlockManager  implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@SuppressWarnings("unused")
 	private Class<? extends Block> classname;
 	private byte data;
 	private Material type;

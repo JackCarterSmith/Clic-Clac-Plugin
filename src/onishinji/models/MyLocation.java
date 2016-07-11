@@ -3,7 +3,6 @@ package onishinji.models;
 import java.io.Serializable;
 
 import org.bukkit.Location;
-import org.bukkit.World;
 
 public class MyLocation implements Serializable {
 

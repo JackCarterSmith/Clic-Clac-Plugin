@@ -3,7 +3,6 @@ package onishinji.commands;
 import onishinji.ClicClac;
 import onishinji.StructureCC;
 
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -14,7 +13,6 @@ public class NextCCCommand implements CommandExecutor {
     private ClicClac plugin;
 
     public NextCCCommand(ClicClac clicClac) {
-        // TODO Auto-generated constructor stub
         plugin = clicClac;
     }
 

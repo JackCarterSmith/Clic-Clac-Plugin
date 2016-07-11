@@ -3,12 +3,10 @@ package onishinji.commands;
 import onishinji.ClicClac;
 import onishinji.StructureCC;
 
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 
 public class EditCCCommand implements CommandExecutor {
 

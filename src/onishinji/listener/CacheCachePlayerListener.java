@@ -1,15 +1,12 @@
 package onishinji.listener;
 
-import java.awt.Color;
 import java.util.ArrayList;
 
 import onishinji.ClicClac;
 import onishinji.StructureCC;
 import onishinji.models.MyLocation;
 import org.bukkit.block.Sign;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
@@ -23,7 +20,6 @@ public class CacheCachePlayerListener implements Listener {
     private ClicClac plugin;
 
     public CacheCachePlayerListener(ClicClac giveItemOnEvent) {
-        // TODO Auto-generated constructor stub
         plugin = giveItemOnEvent;
     }
     
@@ -42,7 +38,8 @@ public class CacheCachePlayerListener implements Listener {
         
         if (event.getClickedBlock() != null && event.getAction() == Action.LEFT_CLICK_BLOCK) {
 
-            Block block = event.getClickedBlock();
+            @SuppressWarnings("unused")
+			Block block = event.getClickedBlock();
             Player player = event.getPlayer();
 
             //////////////////////////////////////////////////////////////////

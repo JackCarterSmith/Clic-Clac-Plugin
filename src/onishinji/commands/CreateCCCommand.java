@@ -1,7 +1,5 @@
 package onishinji.commands;
 
-import java.util.ArrayList;
-
 import onishinji.ClicClac;
 
 import org.bukkit.command.Command;

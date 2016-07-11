@@ -2,13 +2,13 @@ package onishinji.models;
 
 import org.bukkit.Location;
 
+@SuppressWarnings("serial")
 public class ButtonCC extends MyLocation {
  
     boolean positiv = true; 
 
     public ButtonCC(Location ref) {
         super(ref);
-        // TODO Auto-generated constructor stub
     }
 
     public boolean isPositiv() {

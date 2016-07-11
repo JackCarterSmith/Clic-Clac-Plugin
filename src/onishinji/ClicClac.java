@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Map.Entry;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Logger;
@@ -40,15 +39,12 @@ import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player; 
 
-import org.bukkit.event.Event; 
-
 import org.bukkit.event.block.BlockRedstoneEvent;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.nijiko.permissions.PermissionHandler;
-import com.nijikokun.bukkit.Permissions.Permissions;
+import net.milkbowl.vault.permission.Permission;
 
 public class ClicClac extends JavaPlugin {
 
@@ -58,7 +54,7 @@ public class ClicClac extends JavaPlugin {
     public HashMap<Player, StructureCC> playerCreateCommand = new HashMap<Player, StructureCC>();
     public HashMap<Player, StructureCC> playerActiveLink = new HashMap<Player, StructureCC>();
     public ArrayList<StructureCC> structuresLoaded = new ArrayList<StructureCC>();
-    public PermissionHandler _permissions;
+    public static Permission perms = null;
     private Logger log;
     private Language lang;
 
@@ -68,17 +64,16 @@ public class ClicClac extends JavaPlugin {
         playerCreateCommand = new HashMap<Player, StructureCC>();
         playerActiveLink = new HashMap<Player, StructureCC>();
         structuresLoaded = new ArrayList<StructureCC>();
-        _permissions = null;
 
         System.out.println(">>> Clic Clac ne marche plus");
 
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public void onEnable() {
         log = Logger.getLogger("Minecraft");
-        
-        _permissions = null;
+        setupPermissions();
 
         playerCreateCommand = new HashMap<Player, StructureCC>();
         playerActiveLink = new HashMap<Player, StructureCC>();
@@ -180,13 +175,16 @@ public class ClicClac extends JavaPlugin {
             }
 
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
-        init();
-
         System.out.println(">>> Clic Clac est en route !!");
+    }
+    
+    private boolean setupPermissions() {
+        RegisteredServiceProvider<Permission> rsp = getServer().getServicesManager().getRegistration(Permission.class);
+        perms = rsp.getProvider();
+        return perms != null;
     }
 
     private void initLanguage() {
@@ -302,28 +300,16 @@ public class ClicClac extends JavaPlugin {
 
     
     public boolean has(Player player, String permissionsNode) {
-        return _permissions.has(player, permissionsNode);
+        return perms.has(player, permissionsNode);
     }
 
     public boolean hasGuard(Player player, String permissionsNode) {
-        if (_permissions != null && !this.has(player, permissionsNode)) {
+        if (perms != null && !this.has(player, permissionsNode)) {
             player.sendMessage(this.getLocale("cc.forbidden.command"));
             return false;
         } else {
             return true;
         }
-    }
-
-    public boolean init() {
-        Plugin permissions = this.getServer().getPluginManager().getPlugin("Permissions");
-
-        if (permissions == null) {
-            return false;
-        }
-
-        _permissions = ((Permissions) permissions).getHandler();
-
-        return true;
     }
 
     public boolean structureExist(String name, String groupName) {
@@ -379,7 +365,6 @@ public class ClicClac extends JavaPlugin {
     }
 
     public void endStructure(Player player) {
-        // TODO Auto-generated method stub
         playerCreateCommand.remove(player);
     }
 
@@ -392,7 +377,6 @@ public class ClicClac extends JavaPlugin {
             SLAPI.save(this.structuresLoaded, "plugins/ClicClac/structuresLoaded.bin");
 
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -460,7 +444,6 @@ public class ClicClac extends JavaPlugin {
                 SLAPI.save(this.structuresLoaded, "plugins/ClicClac/structuresLoaded.bin");
 
             } catch (Exception e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
 
@@ -543,7 +526,8 @@ public class ClicClac extends JavaPlugin {
             Date current = Calendar.getInstance().getTime();
             test.lastUsed = current ;
             
-            final int i = 0;
+            @SuppressWarnings("unused")
+			final int i = 0;
             t.schedule(new TimerTask() {
                 int nbrRepetitions = test.steps.size() - 1;
 

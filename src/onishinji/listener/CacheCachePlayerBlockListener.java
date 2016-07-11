@@ -14,14 +14,12 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockDamageEvent; 
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.block.BlockRedstoneEvent;
-import org.bukkit.material.Sign;
 
 public class CacheCachePlayerBlockListener implements Listener {
 
     private ClicClac plugin;
 
     public CacheCachePlayerBlockListener(ClicClac giveItemOnEvent) {
-        // TODO Auto-generated constructor stub
         plugin = giveItemOnEvent;
     }
     
